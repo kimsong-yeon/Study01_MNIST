@@ -1,0 +1,44 @@
+# web_version 폴더를 GitHub Pages 에 배포합니다.
+# 빌드 과정이 없으므로 폴더 내용을 그대로 올립니다.
+name: GitHub Pages 배포
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "web_version/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:   # Actions 탭에서 직접 실행할 수 있도록
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 배포가 겹치면 진행 중인 배포는 끝까지 두고 최신 것만 이어서 실행
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:   # 작업 id 는 영문만 허용되어 이름(name)만 한글로 둠
+    name: 배포
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 저장소 내려받기
+        uses: actions/checkout@v4
+
+      - name: Pages 설정
+        uses: actions/configure-pages@v5
+
+      - name: web_version 폴더 올리기
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web_version
+
+      - name: GitHub Pages 에 배포
+        id: deployment
+        uses: actions/deploy-pages@v4

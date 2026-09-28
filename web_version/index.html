@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>손글씨 숫자 인식기</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="학생정보">학번 2601928 이름 김송연</header>
+<main class="앱">
+  <h1>손글씨 숫자 인식기</h1>
+  <p class="설명">PyTorch로 학습한 CNN을 순수 자바스크립트로 실행합니다. 모든 계산은 이 브라우저 안에서 이루어집니다.</p>
+  <div id="오류안내" class="오류" hidden></div>
+  <div class="본문">
+    <section class="그림판영역">
+      <p class="제목">여기에 숫자(0~9)를 그려 주세요</p>
+      <canvas id="그림판" width="280" height="280"></canvas>
+      <div class="버튼줄">
+        <button id="인식버튼" type="button" class="주버튼">인식하기</button>
+        <button id="지우기버튼" type="button">지우기</button>
+      </div>
+    </section>
+    <section class="결과영역">
+      <p class="제목">인식 결과</p>
+      <div id="결과숫자" class="결과숫자">?</div>
+      <div id="확신도" class="확신도"></div>
+      <ol id="막대목록" class="막대목록"></ol>
+    </section>
+  </div>
+  <p class="도움말">손을 떼면 자동으로 인식합니다 · Enter: 다시 인식 · Esc / Delete: 지우기</p>
+</main>
+<!-- 순서 중요: 가중치 → 추론 엔진 → 전처리 → 화면 (ES 모듈은 file:// 에서 막히므로 일반 스크립트 사용) -->
+<script src="weights.js"></script>
+<script src="js/model.js"></script>
+<script src="js/preprocess.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

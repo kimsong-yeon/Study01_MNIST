@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>웹 버전 테스트</title>
+<style>
+  body { font-family: "맑은 고딕", "Malgun Gothic", system-ui, sans-serif; margin: 16px; color: #202124; }
+  #요약 { font-size: 1.2rem; font-weight: bold; margin-bottom: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  td, th { border: 1px solid #dadce0; padding: 4px 8px; text-align: left; vertical-align: top; }
+  .통과 { color: #188038; }
+  .실패 { color: #d93025; }
+</style>
+</head>
+<body>
+<h1>손글씨 인식 웹 버전 테스트</h1>
+<div id="요약">실행 중...</div>
+<table>
+  <thead><tr><th>결과</th><th>검사</th><th>내용</th></tr></thead>
+  <tbody id="결과표"></tbody>
+</table>
+<!-- 순서 중요: 데이터 → 계산 코드 → 검사 코드 -->
+<script src="../weights.js"></script>
+<script src="reference.js"></script>
+<script src="../js/model.js"></script>
+<script src="../js/preprocess.js"></script>
+<script src="tests.js"></script>
+</body>
+</html>

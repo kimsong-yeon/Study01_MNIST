@@ -1,0 +1,86 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "맑은 고딕", "Malgun Gothic", system-ui, sans-serif;
+  background: #f5f6f8;
+  color: #202124;
+}
+
+/* 화면 맨 위 학번·이름 표시줄 */
+.학생정보 {
+  background: #1a73e8;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 16px;
+}
+
+.앱 { max-width: 640px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 1.4rem; margin: 8px 0 4px; }
+.설명, .도움말 { color: #5f6368; font-size: 0.9rem; margin: 0 0 12px; }
+.도움말 { margin-top: 12px; }
+.제목 { margin: 0 0 8px; }
+
+.본문 { display: flex; gap: 16px; align-items: flex-start; }
+.그림판영역, .결과영역 {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+.그림판영역 { flex: 0 0 auto; }
+.결과영역 { flex: 1 1 auto; min-width: 0; text-align: center; }
+
+#그림판 {
+  display: block;
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  background: #000;
+  border-radius: 4px;
+  cursor: crosshair;
+  touch-action: none;  /* 휴대폰에서 그릴 때 화면이 스크롤되지 않도록 */
+}
+#그림판.비활성 { opacity: 0.4; cursor: not-allowed; }
+
+.버튼줄 { display: flex; gap: 8px; margin-top: 10px; }
+.버튼줄 button {
+  flex: 1;
+  padding: 10px;
+  font: inherit;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  background: #fff;
+  color: #202124;
+  cursor: pointer;
+}
+.버튼줄 .주버튼 { background: #1a73e8; border-color: #1a73e8; color: #fff; font-weight: bold; }
+.버튼줄 button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.결과숫자 { font-size: 72px; font-weight: bold; color: #1a73e8; line-height: 1.1; }
+.확신도 { min-height: 1.4em; font-size: 0.95rem; }
+
+.막대목록 { list-style: none; padding: 0; margin: 12px 0 0; }
+.막대줄 {
+  display: grid;
+  grid-template-columns: 1.5em 1fr 4.5em;
+  align-items: center;
+  gap: 6px;
+  margin: 3px 0;
+  font-size: 0.85rem;
+}
+.막대배경 { height: 14px; background: #eee; border-radius: 3px; overflow: hidden; }
+.막대 { height: 100%; width: 0; background: #9aa0a6; }
+.막대.최대 { background: #1a73e8; }
+.막대값 { text-align: right; font-variant-numeric: tabular-nums; }
+
+.오류 { background: #fce8e6; color: #a50e0e; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
+
+/* 좁은 화면(휴대폰): 그림판 위, 결과 아래로 세로 배치 */
+@media (max-width: 600px) {
+  .본문 { flex-direction: column; align-items: stretch; }
+  .그림판영역 { align-self: center; width: 100%; max-width: 312px; }
+  #그림판 { width: 100%; }
+}
